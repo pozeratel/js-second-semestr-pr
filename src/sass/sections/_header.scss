@@ -1,0 +1,111 @@
+.header {
+    padding: 210px 0;
+    text-align: center;
+    background-image: linear-gradient(rgba(14, 15, 15, 0.4), rgba(14, 15, 15, 0.4)), url(../img/desktop/hero-desktop.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    position: relative;
+
+    &__logo {
+        color: #FFF;
+        font-weight: 700;
+        font-size: 30px;
+        max-width: 80px;
+        position: absolute;
+        margin-left: -260px;
+    }
+
+    &__bg-logo {
+        position: absolute;
+        top: -280px;
+        left: -320px;
+        color: #939393;
+        width: 350px;
+        height: 400px;
+        border-radius: 50%;
+        background: linear-gradient(136deg, rgba(196, 196, 196, 0.03) 10.75%, rgba(196, 196, 196, 0.00) 92.33%);
+        backdrop-filter: blur(15px);
+    }
+
+    &__title {
+        color: #DC56C5;
+        font-size: 50px;
+        font-weight: 600;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-right: -870px;
+        margin-top: 25px;
+    }
+
+    &__box {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        margin-top: -190px;
+    }
+
+    &__search {
+        width: 13px;
+        height: 13px;
+        position: absolute;
+        margin-left: 170px;
+    }
+
+    &__items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+    }
+
+    &__select {
+        border-radius: 20px;
+        padding: 11px 40px 11px 18px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.20);
+        backdrop-filter: blur(10px);
+        font-size: 16px;
+        width: 230px;
+        color: #939393;
+        appearance: none;
+        background-size: 14px;
+        outline: none;
+        position: relative;
+        cursor: pointer;
+    }
+
+    &__select-btn {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        margin-left: 170px;
+        fill: black;
+    }
+
+    &__input {
+        border-radius: 20px;
+        padding: 11px 18px;
+        border: none;
+        outline: none;
+        background-color: rgba(255, 255, 255, 0.20);
+        backdrop-filter: blur(10px);
+        font-size: 16px;
+        font-weight: 400;
+        width: 230px;
+        position: relative;
+
+        &::placeholder {
+            color: #939393;
+        }
+    }
+
+}
