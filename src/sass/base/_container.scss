@@ -2,4 +2,17 @@
     max-width: 1080px;
     padding: 0 15px;
     margin: 0 auto;
+    // outline: 1px solid red;
+
+    @media screen and (min-width:294px) {
+        width: 294px;
+    }
+
+    @media screen and (min-width:610px) {
+        width: 610px;
+    }
+
+    @media screen and (min-width:1080px) {
+        width: 1080px;
+    }
 }
