@@ -1,7 +1,8 @@
 import fetchEvents from "./fetchEvents";
 
 const listRef = document.querySelector(".events_collections");
-const paginationRef = document.querySelector(".pag_numbers")
+const paginationRef = document.querySelector(".pag_numbers");
+const cards = document.querySelectorAll('.fade-in');
 
 
 async function loadPage(page = 0) {
@@ -18,11 +19,6 @@ async function loadPage(page = 0) {
 
 function renderEvents(events = []) {
 
-    if (!events.length) {
-        listRef.innerHTML = "<p>No events</p>";
-        return;
-    }
-
     const html = events.map(({ images, name, dates, _embedded }) => {
 
         const venue = _embedded?.venues?.[0];
@@ -34,7 +30,7 @@ function renderEvents(events = []) {
         )}`;
 
         return `
-        <li class="events_item">
+        <li class="events_item fade-in is-visible">
         <div class="overflow"></div>
             <img class="events_img" src="${images?.[2]?.url}" alt="${name}" />
             <h3 class="events_title">${name}</h3>
@@ -99,3 +95,12 @@ function pagginationLoad() {
 
 
 loadPage(0);
+
+
+
+
+cards.forEach((card, index) => {
+    setTimeout(() => {
+        card.classList.add('is-visible');
+    }, index * 60);
+});
