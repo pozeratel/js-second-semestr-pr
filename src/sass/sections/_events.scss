@@ -1,5 +1,4 @@
 .events_img {
-
     width: 108.0px;
     height: 101.0px;
     border-radius: 50px 0;
@@ -11,7 +10,6 @@
         width: 180.0px;
         height: 227.0px;
     }
-
 }
 
 .events {
@@ -24,7 +22,6 @@
     border-radius: 50px 0;
     border: 1px solid rgba(220, 86, 197, 0.30);
     position: absolute;
-
     top: -9px;
     left: 10px;
     z-index: 0;
@@ -42,13 +39,7 @@
         top: -15px;
         left: 40px;
     }
-
 }
-
-
-
-
-
 
 .events_item {
     width: 138.0px;
@@ -63,12 +54,9 @@
         height: 312.0px;
     }
 
-    ;
-
     @media screen and (min-width:1080px) {
         flex-basis: calc((100% - 280px) / 4);
     }
-
 }
 
 .events_collections {
@@ -82,9 +70,7 @@
     @media screen and (min-width:610px) {
         column-gap: 27px;
         row-gap: 45px;
-
     }
-
     @media screen and (min-width:1080px) {
         column-gap: 70px;
         row-gap: 50px;
@@ -97,11 +83,7 @@
     font-family: Montserrat;
     font-size: 14px;
     font-weight: 700;
-    line-height: normal;
     margin-bottom: 5px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
     overflow: hidden;
 
     @media screen and (min-width:610px) {
@@ -109,15 +91,12 @@
     }
 }
 
-
 .events__date {
     color: #FFF;
     text-align: center;
     font-family: Montserrat;
     font-size: 14px;
-    font-style: normal;
     font-weight: 400;
-    line-height: normal;
     margin-bottom: 5px;
 
     @media screen and (min-width:610px) {
@@ -130,16 +109,12 @@
     text-align: center;
     font-family: Montserrat;
     font-size: 12 px;
-    font-style: normal;
     font-weight: 600;
-    line-height: normal;
 
     @media screen and (min-width:610px) {
         font-size: 14px;
     }
 }
-
-
 
 .pagination {
     display: flex;
@@ -166,7 +141,6 @@
 
 .page.active {
     border: 1px solid #a855f7;
-    /* фіолетовий */
     color: white;
 }
 
