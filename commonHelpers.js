@@ -5,7 +5,7 @@
             <h3 class="events_title">${r}</h3>
             <p class="events__date">${((v=t==null?void 0:t.start)==null?void 0:v.localDate)||""}</p>
             <div class="event-box">
-                <img class="modal-place" src="./img/place.svg" alt="place">
+                <img class="modal-place" src="../img/place.svg" alt="place">
                 <a class="event__link" href="${P}">${d}</a>
             </div>       
         </li>`}).join("");y.innerHTML=o}const l={totalPages:0,currentPage:0};function O(){const{currentPage:s,totalPages:o}=l;i.innerHTML="";const n=e=>{const c=document.createElement("button");c.textContent=e+1,c.classList.add("page"),e===s&&c.classList.add("active"),c.addEventListener("click",()=>{L(e)}),i.appendChild(c)},r=Math.max(0,s-2),t=Math.min(o-1,s+2);r>0&&(n(0),i.appendChild(document.createTextNode("...")));for(let e=r;e<=t;e+=1)n(e);t<o-1&&(i.append("..."),n(o-1))}L(0);q.forEach((s,o)=>{setTimeout(()=>{s.classList.add("is-visible")},o*60)});function k(s){$.src=s,_.src=s}y.addEventListener("click",s=>{const o=s.target.closest(".events_item");if(!o)return;const n=o.dataset.img;k(n),a.classList.add("is-open")});a.addEventListener("click",s=>{s.target===a&&a.classList.remove("is-open")});window.addEventListener("keydown",j);function j(s){s.code==="Escape"&&a.classList.remove("is-open")}S.addEventListener("click",()=>{a.classList.remove("is-open")});
