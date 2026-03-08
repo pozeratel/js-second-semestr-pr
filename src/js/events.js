@@ -36,7 +36,7 @@ function renderEvents(events = []) {
             <h3 class="events_title">${name}</h3>
             <p class="events__date">${dates?.start?.localDate || ""}</p>
             <div class="event-box">
-                <img class="modal-place" src="./img/place.svg" alt="place">
+                <img class="modal-place" src="../img/place.svg" alt="place">
                 <a class="event__link" href="${mapLink}">${city}</a>
             </div>       
         </li>`;
