@@ -1,4 +1,6 @@
+import location from "../img/place.svg";
 import fetchEvents from "./fetchEvents";
+
 
 const listRef = document.querySelector(".events_collections");
 const paginationRef = document.querySelector(".pag_numbers");
@@ -36,7 +38,7 @@ function renderEvents(events = []) {
             <h3 class="events_title">${name}</h3>
             <p class="events__date">${dates?.start?.localDate || ""}</p>
             <div class="event-box">
-                <img class="modal-place" src="../img/place.svg" alt="place">
+                <img class="modal-place" src="${location}" alt="place">
                 <a class="event__link" href="${mapLink}">${city}</a>
             </div>       
         </li>`;
