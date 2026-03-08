@@ -1,34 +1,49 @@
 import location from "../img/place.svg";
 import fetchEvents from "./fetchEvents";
 
-
 const listRef = document.querySelector(".events_collections");
 const paginationRef = document.querySelector(".pag_numbers");
-const cards = document.querySelectorAll('.fade-in');
-const backdrop = document.querySelector('.backdrop');
+const backdrop = document.querySelector(".backdrop");
 const closeBtn = document.querySelector(".modal-close");
+const searchInput = document.querySelector(".header__input");
 
 const modalLogo = document.querySelector(".event-logo");
 const modalBigLogo = document.querySelector(".modal-big-logo");
 
+let currentKeyword = "";
+
+const state = {
+    totalPages: 0,
+    currentPage: 0
+};
+
+async function loadMultiplePages(keyword) {
+    let allEvents = [];
+    for (let page = 0; page < 5; page++) {
+        const { events } = await fetchEvents(page, keyword);
+        allEvents = allEvents.concat(events);
+    }
+    return allEvents;
+}
+
 async function loadPage(page = 0) {
-    const { events, totalPages, currentPage } = await fetchEvents(page);
+    const { events, totalPages, currentPage } = await fetchEvents(page, currentKeyword);
     state.currentPage = currentPage;
     state.totalPages = Math.min(totalPages, 50);
     renderEvents(events);
     pagginationLoad();
-    console.log("Events from API:", events);
 }
 
 function renderEvents(events = []) {
-    const html = events.map(({ images, name, dates, _embedded }) => {
+    const filtered = events.filter(event =>
+        event.name.toLowerCase().includes(currentKeyword.toLowerCase())
+    );
+
+    const html = filtered.map(({ images, name, dates, _embedded }) => {
         const venue = _embedded?.venues?.[0];
         const city = venue?.city?.name || "";
         const address = venue?.address?.line1 || "";
-        const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-            address + " " + city
-        )}`;
-
+        const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address + " " + city)}`;
         const img = images?.[0]?.url || "./img/no-image.jpg";
 
         return `
@@ -39,18 +54,13 @@ function renderEvents(events = []) {
             <p class="events__date">${dates?.start?.localDate || ""}</p>
             <div class="event-box">
                 <img class="modal-place" src="${location}" alt="place">
-                <a class="event__link" href="${mapLink}">${city}</a>
+                <a class="event__link" href="${mapLink}" target="_blank">${city}</a>
             </div>       
         </li>`;
     }).join("");
 
     listRef.innerHTML = html;
 }
-
-const state = {
-    totalPages: 0,
-    currentPage: 0
-};
 
 function pagginationLoad() {
 
@@ -82,10 +92,10 @@ function pagginationLoad() {
 
     if (start > 0) {
         createButton(0);
-        paginationRef.appendChild(document.createTextNode("..."));
+        paginationRef.append("...");
     }
 
-    for (let i = start; i <= end; i += 1) {
+    for (let i = start; i <= end; i++) {
         createButton(i);
     }
 
@@ -94,14 +104,6 @@ function pagginationLoad() {
         createButton(totalPages - 1);
     }
 }
-
-loadPage(0);
-
-cards.forEach((card, index) => {
-    setTimeout(() => {
-        card.classList.add('is-visible');
-    }, index * 60);
-});
 
 function setModalImage(imgUrl) {
     modalLogo.src = imgUrl;
@@ -116,20 +118,35 @@ listRef.addEventListener("click", (e) => {
     backdrop.classList.add("is-open");
 });
 
-backdrop.addEventListener('click', (e) => {
+backdrop.addEventListener("click", (e) => {
     if (e.target === backdrop) {
-        backdrop.classList.remove('is-open');
+        backdrop.classList.remove("is-open");
     }
 });
 
-window.addEventListener("keydown", onEscClose);
-
-function onEscClose(event) {
-    if (event.code === "Escape") {
+window.addEventListener("keydown", (e) => {
+    if (e.code === "Escape") {
         backdrop.classList.remove("is-open");
     }
-}
+});
 
 closeBtn.addEventListener("click", () => {
     backdrop.classList.remove("is-open");
 });
+
+function debounce(fn, delay = 400) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            fn(...args);
+        }, delay);
+    };
+}
+
+const debounceSearch = debounce(() => {
+    currentKeyword = searchInput.value.trim();
+    loadPage(0);
+}, 400);
+searchInput.addEventListener("input", debounceSearch);
+loadPage(0);

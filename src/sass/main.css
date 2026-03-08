@@ -222,6 +222,7 @@ body {
   font-weight: 400;
   width: 230px;
   position: relative;
+  color: #939393;
 }
 .header__input::-moz-placeholder {
   color: #939393;
