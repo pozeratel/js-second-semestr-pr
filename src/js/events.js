@@ -1,5 +1,7 @@
 import location from "../img/place.svg";
 import fetchEvents from "./fetchEvents";
+import countrySearch from "./country-search.js";
+import { contryInput } from "./country-search.js";
 
 const listRef = document.querySelector(".events_collections");
 const paginationRef = document.querySelector(".pag_numbers");
@@ -7,10 +9,12 @@ const backdrop = document.querySelector(".backdrop");
 const closeBtn = document.querySelector(".modal-close");
 const searchInput = document.querySelector(".header__input");
 
+
 const modalLogo = document.querySelector(".event-logo");
 const modalBigLogo = document.querySelector(".modal-big-logo");
 
 let currentKeyword = "";
+let currentContry = "";
 
 const state = {
     totalPages: 0,
@@ -27,7 +31,7 @@ async function loadMultiplePages(keyword) {
 }
 
 async function loadPage(page = 0) {
-    const { events, totalPages, currentPage } = await fetchEvents(page, currentKeyword);
+    const { events, totalPages, currentPage } = await fetchEvents(page, currentKeyword, currentContry);
     state.currentPage = currentPage;
     state.totalPages = Math.min(totalPages, 50);
     renderEvents(events);
@@ -41,6 +45,7 @@ function renderEvents(events = []) {
 
     const html = filtered.map(({ images, name, dates, _embedded }) => {
         const venue = _embedded?.venues?.[0];
+        const country = venue?.country
         const city = venue?.city?.name || "";
         const address = venue?.address?.line1 || "";
         const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address + " " + city)}`;
@@ -63,19 +68,12 @@ function renderEvents(events = []) {
 }
 
 function pagginationLoad() {
-
     const { currentPage, totalPages } = state;
-
     paginationRef.innerHTML = "";
-
     const createButton = (page) => {
-
         const btn = document.createElement("button");
-
         btn.textContent = page + 1;
-
         btn.classList.add("page");
-
         if (page === currentPage) {
             btn.classList.add("active");
         }
@@ -150,3 +148,15 @@ const debounceSearch = debounce(() => {
 }, 400);
 searchInput.addEventListener("input", debounceSearch);
 loadPage(0);
+
+async function loadCountries() {
+    const { events } = await fetchEvents();
+    const countries = countrySearch(events);
+    console.log(countries);
+}
+loadCountries();
+
+contryInput.addEventListener("change", () => {
+    currentContry = contryInput.value;
+    loadPage(0);
+})
