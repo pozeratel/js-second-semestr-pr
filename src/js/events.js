@@ -6,12 +6,12 @@ import { contryInput } from "./country-search.js";
 const listRef = document.querySelector(".events_collections");
 const paginationRef = document.querySelector(".pag_numbers");
 const backdrop = document.querySelector(".backdrop");
-const closeBtn = document.querySelector(".modal-close");
+const closeBtn = document.querySelector(".modal__close");
 const searchInput = document.querySelector(".header__input");
 
 
-const modalLogo = document.querySelector(".event-logo");
-const modalBigLogo = document.querySelector(".modal-big-logo");
+const modalLogo = document.querySelector(".modal__logo");
+const modalBigLogo = document.querySelector(".modal__big-logo");
 
 let currentKeyword = "";
 let currentContry = "";
@@ -57,8 +57,8 @@ function renderEvents(events = []) {
             <img class="events_img" src="${img}" alt="${name}" />
             <h3 class="events_title">${name}</h3>
             <p class="events__date">${dates?.start?.localDate || ""}</p>
-            <div class="event-box">
-                <img class="modal-place" src="${location}" alt="place">
+            <div class="modal__box">
+                <img class="modal__place" src="${location}" alt="place">
                 <a class="event__link" href="${mapLink}" target="_blank">${city}</a>
             </div>       
         </li>`;
