@@ -73,7 +73,7 @@ body {
   position: absolute;
   margin-left: 10px;
   margin-left: -190px;
-  top: 90px;
+  top: 95px;
 }
 @media screen and (min-width: 768px) {
   .header__logo {
@@ -452,7 +452,8 @@ body {
 }
 
 .modal {
-  border-radius: 210px 0;
+  text-align: center;
+  border-radius: 130px 0;
   background: #FFF2FD;
   width: 700px;
   height: 100%;
@@ -460,8 +461,27 @@ body {
   padding: 30px;
   position: relative;
 }
-
-.modal-info {
+@media screen and (min-width: 768px) {
+  .modal {
+    text-align: start;
+    border-radius: 170px 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .modal {
+    text-align: start;
+    border-radius: 210px 0;
+  }
+}
+.modal__info {
+  color: #0E0E0E;
+  font-size: 15px;
+  font-weight: 500;
+  gap: 10px;
+  margin-top: 5px;
+  font-family: Quicksand;
+}
+.modal__infos {
   color: #0E0E0E;
   font-size: 15px;
   font-weight: 500;
@@ -470,26 +490,33 @@ body {
   gap: 10px;
   margin-top: 5px;
   font-family: Quicksand;
+  margin-left: 20px;
 }
-
-.modal-info-box {
+@media screen and (min-width: 768px) {
+  .modal__infos {
+    margin-left: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .modal__infos {
+    margin-left: 0;
+  }
+}
+.modal__info-box {
   display: flex;
   gap: 20px;
 }
-
-.modal-text {
+.modal__text {
   font-family: Arial;
 }
-
-.modal-h3 {
+.modal__h3 {
   margin-top: 17px;
   color: #DC56C5;
   font-size: 17px;
   font-weight: 600;
   font-family: Quicksand;
 }
-
-.modal-close {
+.modal__close {
   background-color: #FFF2FD;
   border: none;
   cursor: pointer;
@@ -497,13 +524,11 @@ body {
   right: 15px;
   top: 15px;
 }
-
-.modal-close-img {
+.modal__close-img {
   width: 20px;
   height: 20px;
 }
-
-.modal-buy-tickets {
+.modal__buy-tickets {
   margin: 10px 0;
   padding: 8px 16px;
   cursor: pointer;
@@ -515,13 +540,11 @@ body {
   border: none;
   outline: none;
 }
-
-.modal-quarcode {
+.modal__quarcode {
   width: 29px;
   height: 19px;
 }
-
-.modal-more {
+.modal__more {
   margin-top: 20px;
   padding: 10px 8px;
   border-radius: 5px;
@@ -531,22 +554,45 @@ body {
   font-size: 16px;
   font-weight: 400;
   border: 1.5px solid #4C00FE;
-  margin-left: 190px;
   cursor: pointer;
 }
-
-.modal-more:hover {
+@media screen and (min-width: 768px) {
+  .modal__more {
+    margin-left: 200px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .modal__more {
+    margin-left: 190px;
+  }
+}
+.modal__more:hover {
   background-color: #4C00FE;
   color: #FFF2FD;
   transition: 0.3s;
 }
-
-.modal-big-logo {
-  width: 320px;
-  height: 500px;
+.modal__big-logo {
+  display: none;
 }
-
-.event-logo {
+@media screen and (min-width: 768px) {
+  .modal__big-logo {
+    display: inline;
+    width: 250px;
+    height: 430px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .modal__big-logo {
+    display: inline;
+    width: 320px;
+    height: 500px;
+  }
+}
+.modal__place {
+  width: 12px;
+  height: 12px;
+}
+.modal__logo {
   border-radius: 50%;
   width: 80px;
   height: 80px;
@@ -555,15 +601,13 @@ body {
   margin-top: -20px;
   margin-bottom: 15px;
 }
-
-.modal-place {
-  width: 12px;
-  height: 12px;
-}
-
-.event-box {
+.modal__box {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
+}
+
+.events_item {
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */
